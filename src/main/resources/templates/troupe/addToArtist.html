@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Troupe to Artist</title>
+</head>
+<body>
+<h2>Add Troupe to Artist: <span th:text="${Artist.firstname} + ' ' + ${Artist.lastname}"></span></h2>
+
+<form action="#" th:action="@{/addTroupe/{idArtist}(idArtist=${Artist.id})}" th:object="${Artist}" method="post">
+
+    <label for="troupeId">Select Troupe:</label>
+    <select id="troupeId" name="troupeId">
+        <option value="" disabled selected>Select a troupe</option>
+        <option th:each="troupe : ${troupes}"
+                th:value="${troupe.id}"
+                th:text="${troupe.name}">
+        </option>
+    </select>
+
+    <button type="submit">Add Troupe</button>
+</form>
+
+<a th:href="@{/artists}">Back to Artists List</a>
+</body>
+</html>
